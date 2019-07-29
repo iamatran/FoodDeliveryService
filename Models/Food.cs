@@ -1,4 +1,4 @@
-namespace deliveryDb.Models{
+namespace FoodItems.Models{
     public class Food{
         public long FoodId { get;set; }
         public long RestaurantId { get;set; }
@@ -8,5 +8,7 @@ namespace deliveryDb.Models{
         public string PictureId { get;set; }
 
         public Restaurant Restaurant { get;set; }
+
+        public List<Rating> Ratings { get;set; }
     }
 }
