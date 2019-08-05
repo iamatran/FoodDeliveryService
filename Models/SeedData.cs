@@ -12,6 +12,7 @@ namespace deliveryDb {
                     && context.Database.GetPendingMigrations().Count() == 0
                     && context.Foods.Count() == 0) {
                 var a1 = new Address {
+                    AddressId = 1,
                     Name = "Bob's Burgers",
                     Address1 = "123 Fake Street",
                     City = "San Jose", 
@@ -19,6 +20,7 @@ namespace deliveryDb {
                     ZipCode = "12345"
                 };
                 var a2 = new Address {
+                    AddressId = 2,
                     Name = "The Morning Grill",
                     Address1 = "456 Fake Street",
                     City = "Chicago", 
@@ -26,6 +28,7 @@ namespace deliveryDb {
                     ZipCode = "12345"
                 };
                 var a3 = new Address {
+                    AddressId = 3,
                     Name = "Pete's Cafe",
                     Address1 = "789 Fake Street",
                     City = "New York", 
