@@ -1,6 +1,6 @@
-namespace deliveryDb.Models{
+namespace FoodDeliveryService.Models{
     public class Address{
-        public string AddressId { get;set; }
+        public long AddressId { get;set; }
         public string Name { get;set; }
         public string Address1 { get;set; }
         public string City { get;set; }

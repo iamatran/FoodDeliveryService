@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using deliveryDb.Models;
+using FoodDeliveryService.Models;
 
-namespace deliveryDb {
+namespace FoodDeliveryService {
 
     public class SeedData {
 

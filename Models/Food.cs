@@ -1,4 +1,4 @@
-namespace deliveryDb.Models{
+namespace FoodDeliveryService.Models{
     public class Food{
         public long FoodId { get;set; }
         public long RestaurantId { get;set; }

@@ -1,4 +1,4 @@
-namespace deliveryDb.Models{
+namespace FoodDeliveryService.Models{
     public class Restaurant{
         public string RestaurantId { get;set; }
         public string Name { get;set; }
