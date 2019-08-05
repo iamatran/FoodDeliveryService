@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodDeliveryService.Models {
-    public class DataContext : DataContext{
+namespace deliveryDb.Models {
+    public class DataContext : DbContext{
         public DataContext(DbContextOptions<DataContext> opts) : base(opts){}
         public DbSet<Food> Foods {get; set;}
         public DbSet<Address> Addresses {get; set;}
