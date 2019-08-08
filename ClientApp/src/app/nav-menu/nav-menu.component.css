@@ -1,59 +1,116 @@
-li .glyphicon {
-    margin-right: 10px;
-}
-
-/* Highlighting rules for nav menu items */
-li.link-active a,
-li.link-active a:hover,
-li.link-active a:focus {
-    background-color: #4189C7;
+@media screen and (min-width: 1450px) {
+    div.carousel {
+      width: 70%;
+      margin-left: 15%;
+      margin-right: 15%;
+      background-color: #333;
+    }
+    div.backcolor {
+      background-color: #E9ECEF;
+    }
+  }
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  .logo {
+    width: 180px;
+  }
+  .container {
+    margin-top: 30px;
+  }
+  .boximg {
+    width: 500px;
+    height: 500px;
+  }
+  .btn {
+    background: #333;
+    border: #333;
+  }
+  .footer {
+    margin-bottom: 0;
+    margin-top: 100px;
+  }
+  form {
+    margin-top: 100px;
+  }
+  .messagebox {
+    height: 300px;
+  }
+  .dropdownbtn {
+    background: white;
+    border: #333;
+    color: #333;
+  }
+  .contactussize {
+    margin-bottom: 30px;
+  }
+  .aboutcards {
+    margin-top: 100px;
+  }
+  .registerspace {
+    margin-top: 20px;
+  }
+  .topmargin {
+    margin-top: 100px;
+  }
+  .signinbody {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: whitesmoke;
+    margin-top: 300px;
+  }
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .marketing h2 {
+    font-weight: 400;
+    margin-top: 20px;
+  }
+  .marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+  }
+  .button {
+    background-color: #333;
+    padding: 10px;
     color: white;
 }
-
-/* Keep the nav menu independent of scrolling and on top of other items */
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-}
-
-@media (min-width: 768px) {
-    /* On small screens, convert the nav menu to a vertical sidebar */
-    .main-nav {
-        height: 100%;
-        width: calc(25% - 20px);
-    }
-    .navbar {
-        border-radius: 0px;
-        border-width: 0px;
-        height: 100%;
-    }
-    .navbar-header {
-        float: none;
-    }
-    .navbar-collapse {
-        border-top: 1px solid #444;
-        padding: 0px;
-    }
-    .navbar ul {
-        float: none;
-    }
-    .navbar li {
-        float: none;
-        font-size: 15px;
-        margin: 6px;
-    }
-    .navbar li a {
-        padding: 10px 16px;
-        border-radius: 4px;
-    }
-    .navbar a {
-        /* If a menu item's text is too long, truncate it */
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.button:hover {
+    background-color: #0069d9;
+    color: white;
 }
