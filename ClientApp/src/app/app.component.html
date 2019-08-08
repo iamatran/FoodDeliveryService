@@ -1,10 +1,22 @@
-<div class='container-fluid'>
-  <div class='row'>
-    <div class='col-sm-3'>
-      <app-nav-menu></app-nav-menu>
-    </div>
-    <div class='col-sm-9 body-content'>
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+<div>
+  <app-nav-menu></app-nav-menu>
 </div>
+
+<div style="text-align: center">
+  <h1>Welcome to {{title}}!</h1>
+</div>
+
+<table class="table table-sm table-striped">
+  <tr>
+    <th>Name</th>
+    <td>{{food?.name}}</td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td>{{food?.description}}</td>
+  </tr>
+  <tr>
+    <th>Price</th>
+    <td>{{food?.price}}</td>
+  </tr>
+</table>
