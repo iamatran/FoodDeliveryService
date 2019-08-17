@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FoodDeliveryService.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace FoodDeliveryService.Controllers
 {
@@ -18,7 +20,28 @@ namespace FoodDeliveryService.Controllers
         [HttpGet("{id}")]                   	
     	public Food GetFood(long id)
     	{
-        	return context.Foods.Find(id);
+            Food result = context.Foods
+                    .Include(m => m.Address)
+                    .Include(m => m.Ratings)
+                    .FirstOrDefault(m => m.FoodId == id);
+            if (result != null)
+            {
+                if (result.Address != null)
+                {
+                    result.Address.Foods = null;
+                }
+                if (result.Ratings != null)
+                {
+                    foreach (Rating r in result.Ratings)
+                    {
+                        r.Food = null;
+                    }
+                }
+            }
+            return result;
+
+
+
     	}
 
     }

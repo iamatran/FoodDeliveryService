@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FoodDeliveryService.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace FoodDeliveryService
 {
@@ -25,7 +26,10 @@ namespace FoodDeliveryService
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration
                     ["Data:Foods:ConnectionString"]));
-
+            services.AddMvc().AddJsonOptions(opts =>
+                		opts.SerializerSettings.ReferenceLoopHandling
+                   		 	= ReferenceLoopHandling.Serialize);
+                                
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the Angular files will be served from this directory
