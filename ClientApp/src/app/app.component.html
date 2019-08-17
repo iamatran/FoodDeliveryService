@@ -1,6 +1,3 @@
-<div>
-  <app-nav-menu></app-nav-menu>
-</div>
 <div style="text-align:center">
   <h1>
     Welcome to {{title}}!  <!-- see orig code -->
@@ -11,19 +8,18 @@
 <table class="table table-sm table-striped">
   <tr>
 	<th>Name</th>
-	<td>{{food?.name}}</td>
+	<td>{{food?.name  || 'Loading Data..'}}</td>
   </tr>
   <tr>
 	<th>Category</th>
-	<td>{{food?.category}}</td>
+	<td>{{food?.category  || 'Loading Data..'}}</td>
   </tr>
   <tr>
 	<th>Description</th>
-	<td>{{food?.description}}</td>
+	<td>{{food?.description  || 'Loading Data..'}}</td>
   </tr>
   <tr>
     <th>Price</th>
-	<td>{{food?.price}}</td>
+	<td>{{food?.price  || 'Loading Data..'}}</td>
   </tr>
 </table>
-
