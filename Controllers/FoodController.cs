@@ -20,6 +20,7 @@ namespace FoodDeliveryService.Controllers
         [HttpGet("{id}")]                   	
     	public Food GetFood(long id)
     	{
+
             Food result = context.Foods
                     .Include(m => m.Address).ThenInclude(s=>s.Foods)
                     .Include(m => m.Ratings)
@@ -29,7 +30,8 @@ namespace FoodDeliveryService.Controllers
                 if (result.Address != null)
                 {
                     result.Address.Foods = result.Address.Foods.Select(s=>
-                    new Food{
+                    new Food
+                    {
                         FoodId = s.FoodId,
                         Name = s.Name,
                         Category = s.Category,
@@ -46,6 +48,7 @@ namespace FoodDeliveryService.Controllers
                 }
             }
             return result;
+            
     	}
 
         [HttpGet]

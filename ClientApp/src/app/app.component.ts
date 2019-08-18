@@ -10,7 +10,12 @@ import { Food } from './models/food.model';
 export class AppComponent {
   title = 'Web Dev';
   constructor(private repo: Repository){}
+
   get food():Food{
     return this.repo.food;
+  }
+
+  get foods():Food[]{
+    return this.repo.foods;
   }
 }
