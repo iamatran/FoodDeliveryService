@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FoodDeliveryService.Models;
 using Microsoft.EntityFrameworkCore;
-
+using FoodDeliveryService.Models.BindingTargets;
 
 namespace FoodDeliveryService.Controllers
 {
@@ -13,7 +13,8 @@ namespace FoodDeliveryService.Controllers
     public class FoodController : Controller
     {
         private DataContext context;
-        public FoodController(DataContext ctx){
+        public FoodController(DataContext ctx)
+        {
             context = ctx;
         }
 
@@ -90,6 +91,28 @@ namespace FoodDeliveryService.Controllers
                 return query;
             }
         }
+
+    [HttpPost]
+        public IActionResult CreateFood([FromBody] FoodData mdata)
+        {
+            if (ModelState.IsValid)
+            {
+                Food m = mdata.Food;
+                if (m.Address != null && m.Address.AddressId != 0)
+                {
+                    context.Attach(m.Address);
+                }
+                context.Add(m);
+                context.SaveChanges();
+                return Ok(m.FoodId);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+
 
     }
 }
