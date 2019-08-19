@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDeliveryService.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190818042358_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190819014251_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,14 +84,16 @@ namespace FoodDeliveryService.Migrations
                 {
                     b.HasOne("FoodDeliveryService.Models.Address", "Address")
                         .WithMany("Foods")
-                        .HasForeignKey("AddressId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("FoodDeliveryService.Models.Rating", b =>
                 {
                     b.HasOne("FoodDeliveryService.Models.Food", "Food")
                         .WithMany("Ratings")
-                        .HasForeignKey("FoodId");
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -32,5 +32,28 @@ export class AppComponent {
       "A head chef quits his restaurant job and buys a food truck", 100, s);
     this.repo.createFoodAndAddress(m, s);
   }
+  replaceFood() {
+    let m = this.repo.foods[0];
+    m.name = "Modified Food";
+    m.category = "Modified Category";
+    this.repo.replaceFood(m);
+  }
+  replaceStudio() {
+    let s = new Address(3, "Modified Address", "New York", "NY");
+    this.repo.replaceAddress(s);
+  }
+  updateFood() {
+    let changes = new Map<string, any>();
+    changes.set("name", "Hotdog");
+    changes.set("address", null);
+    this.repo.updateFood(1, changes);
+  }
+  deleteFood() {
+    this.repo.deleteFood(1);
+  }
+  deleteStudio() {
+    this.repo.deleteAddress(2);
+  }
+
 
 }

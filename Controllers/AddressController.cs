@@ -33,5 +33,23 @@ namespace FoodDeliveryService.Controllers
                 return BadRequest(ModelState);
             }
         }
+        [HttpPut("{id}")]
+        public IActionResult ReplaceAddress(long id,
+               [FromBody] AddressData sdata)
+        {
+            if (ModelState.IsValid)
+            {
+                Address s = sdata.Address;
+                s.AddressId = id;
+                context.Update(s);
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
     }
 }

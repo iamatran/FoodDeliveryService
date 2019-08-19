@@ -28,6 +28,7 @@ namespace FoodDeliveryService.Migrations
                 {
                     FoodId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Image = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -42,7 +43,7 @@ namespace FoodDeliveryService.Migrations
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -62,7 +63,7 @@ namespace FoodDeliveryService.Migrations
                         column: x => x.FoodId,
                         principalTable: "Foods",
                         principalColumn: "FoodId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

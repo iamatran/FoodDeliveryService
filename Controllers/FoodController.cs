@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using FoodDeliveryService.Models;
 using Microsoft.EntityFrameworkCore;
 using FoodDeliveryService.Models.BindingTargets;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace FoodDeliveryService.Controllers
 {
@@ -112,6 +113,59 @@ namespace FoodDeliveryService.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public IActionResult ReplaceFood(long id, [FromBody] FoodData mData)
+        {
+            if (ModelState.IsValid)
+            {
+                Food m = mData.Food;
+                m.FoodId = id;
+                if (m.Address != null && m.Address.AddressId != 0)
+                {
+                    context.Attach(m.Address);
+                }
+                context.Update(m);
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+        //this patch attribute defines a long paremeter that identifies the food that is being modified and the adjacent patch document parameter that represents the Json patch document. We retreive a food object use the patch method yo update and create an updated food object that we also check if the object is valid
+        [HttpPatch("{id}")]
+        public IActionResult UpdateFood(long id,
+            [FromBody]JsonPatchDocument<FoodData> patch)
+        {
+            Food food = context.Foods
+            .Include(m => m.Address)
+            .First(m => m.FoodId == id);
+            FoodData mdata = new FoodData { Food = food };
+            patch.ApplyTo(mdata, ModelState);
+            if (ModelState.IsValid && TryValidateModel(mdata))
+            {
+                if (food.Address != null && food.Address.AddressId != 0)
+                {
+                    context.Attach(food.Address);
+                }
+                context.SaveChanges();
+                return Ok(food);
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+        //our delete method, pasing in id
+        [HttpDelete("{id}")]
+        public IActionResult  DeleteFood(long id)
+        {
+            context.Foods.Remove(new Food { FoodId = id });
+            context.SaveChanges();
+            return Ok(id);
+        }
 
 
     }

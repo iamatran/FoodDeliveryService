@@ -62,6 +62,43 @@ export class Repository {
 					}
 				});
 		}
+		replaceFood(mov: Food) {
+			let data = {
+				image:mov.image, name: mov.name, category: mov.category,
+				description: mov.description, price: mov.price,
+				address: mov.address ? mov.address.addressId : 0
+			};
+			this.http.put(foodsUrl + "/" + mov.foodId, data)
+				.subscribe(response => this.getFoods());
+		}
+		replaceAddress(stu: Address) {
+			let data = {
+				name: stu.name, city: stu.city, state: stu.state
+			};
+			this.http.put(addressesUrl + "/" + stu.addressId, data)
+				.subscribe(response => this.getFoods());
+		}
+		//Receives an id and a map object and replaces map  object with new values. We also use the subscribe method to reload data from the web service
+		updateFood(id: number, changes: Map<string, any>) {
+			let patch = [];
+			changes.forEach((value, key) =>
+			patch.push({ op: "replace", path: key, value: value }));
+			this.http.patch(foodsUrl + "/" + id, patch)
+			.subscribe(response => this.getFoods());
+		}
+		//these are our delete methods
+		deleteFood(id: number) {
+			this.http.delete(foodsUrl + "/" + id)
+				.subscribe(response => this.getFoods());
+		}
+		deleteAddress(id: number) {
+			this.http.delete(addressesUrl + "/" + id)
+				.subscribe(response => {
+					this.getFoods();
+					this.getAddresses();
+				});
+		}
+	
 	
 	
 	food: Food;
