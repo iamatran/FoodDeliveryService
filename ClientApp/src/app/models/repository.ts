@@ -28,8 +28,13 @@ export class Repository {
             url += "&search=" + this.filter.search;
         }
 
-		this.http.get<Food[]>(url)
-		.subscribe(response => this.foods = response);
+		//here we're grabbing the categories for the filters
+		url += "&metadata=true";
+		this.http.get<any>(url)
+			.subscribe(response => {
+                this.foods = response.data;
+                this.categories = response.categories;
+            });
 		}
 
 		getAddresses() {
@@ -104,6 +109,8 @@ export class Repository {
 	food: Food;
 	foods: Food[];
 	addresses: Address[] = [];
+	categories: string[] = [];
+
 	get filter(): Filter {
 		return this.filterObject;
 	}

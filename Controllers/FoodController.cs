@@ -54,8 +54,8 @@ namespace FoodDeliveryService.Controllers
     	}
 
         [HttpGet]
-        public IEnumerable<Food> GetFoods(string category, string search,
-                                            bool related = false)
+        public IActionResult GetFoods(string category, string search,
+                                            bool related = false, bool metadata = false)
         {
             IQueryable<Food> query = context.Foods;
             if (!string.IsNullOrWhiteSpace(category))
@@ -85,13 +85,23 @@ namespace FoodDeliveryService.Controllers
                         m.Ratings.ForEach(r => r.Food = null);
                     }
                 });
-                return data;
+                return metadata ? CreateMetadata(data) : Ok(data);
             }
             else
             {
-                return query;
+                return metadata ? CreateMetadata(query) : Ok(query);
             }
         }
+        //This method will create metadata set to the sequence of food objects and the categories property is set using a query to grab the list of categories of restaurants
+        private IActionResult CreateMetadata(IEnumerable<Food> foods)
+    {
+        return Ok(new
+        {
+            data = foods,
+            categories = context.Foods.Select(m => m.Category)
+        .Distinct().OrderBy(m => m)
+        });
+    }
 
     [HttpPost]
         public IActionResult CreateFood([FromBody] FoodData mdata)
