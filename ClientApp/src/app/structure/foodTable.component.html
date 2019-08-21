@@ -1,0 +1,12 @@
+<table class="table table-striped">
+    <tr><th>Name</th><th>Category</th><th>Price</th><th></th></tr>
+    <tr *ngFor="let food of foods">
+    <td>{{food.name}}</td>
+    <td>{{food.category}}</td>
+    <td>{{food.price}}</td>
+    <td>
+        <button class="btn btn-primary btn-sm"
+        (click)="selectFood(food.foodId)">Details</button>
+    </td>
+    </tr>
+</table>
