@@ -7,6 +7,7 @@ import { ModelModule } from './models/model.module';
 import { FoodTableComponent } from "./structure/foodTable.component"
 import { CategoryFilterComponent } from "./structure/categoryFilter.component"
 import { FoodDetailComponent } from "./structure/foodDetail.component";
+import { RoutingConfig } from "./app.routing";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FoodDetailComponent } from "./structure/foodDetail.component";
     AppComponent
   ],
   imports: [
+    RoutingConfig,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     ModelModule,
