@@ -5,7 +5,7 @@
             <div class="card-header">
                 <span class="h4">
                     <img src="{{food.image}}" alt="[Image Missing]" width="70px" />{{food.name}}
-    
+                    <store-ratings [food]="food"></store-ratings>
                 </span>
                 <span class="float-right badge badge-pill badge-primary">
                     {{food.price | currency:"USD"}}

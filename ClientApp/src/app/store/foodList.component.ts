@@ -16,5 +16,6 @@ export class FoodListComponent {
                 * this.repo.pagination.foodsPerPage;
             return this.repo.foods.slice(pageIndex,
                 pageIndex + this.repo.pagination.foodsPerPage);
+        }
     }
 }
