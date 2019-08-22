@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Food } from "./food.model";
+import { Repository } from "./repository";
 
 @Injectable()
 //This is the users shopping cart
@@ -7,6 +8,20 @@ export class Cart {
     selections: FoodSelection[] = [];
     itemCount: number = 0;
     totalPrice: number = 0;
+
+    //This constructor takes in repository data and works with the session data
+    constructor(private repo: Repository) {
+        repo.getSessionData("cart").subscribe(cartData => {
+            if (cartData != null) {
+                cartData.map(item => new FoodSelection(this, item.foodId,
+                    item.name, item.price, item.quantity))
+                    .forEach(item => this.selections.push(item));
+                this.update(false);
+            }
+        });
+    }
+
+
     //method to add food to the cart
     addFood(food: Food) {
         let selection = this.selections
@@ -41,11 +56,21 @@ export class Cart {
         this.update();
     }
     //keeps track of item count and total price
-    update() {
+    update(storeData: boolean = true) {
         this.itemCount = this.selections.map(ps => ps.quantity)
             .reduce((prev, curr) => prev + curr, 0);
         this.totalPrice = this.selections.map(ps => ps.price * ps.quantity)
             .reduce((prev, curr) => prev + curr, 0);
+
+        // Added for session handling
+        if (storeData) {
+            this.repo.storeSessionData("cart", this.selections.map(s => {
+                return {
+                    foodId: s.foodId, name: s.name,
+                    price: s.price, quantity: s.quantity
+                }
+            }));
+        }
     }
 }
 //This allows for individual food item choices

@@ -50,5 +50,13 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
-
+  <!-- References the nuget packages to install our session data -->
+<ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\cart.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\store\cartDetail.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\main.ts" />
+</ItemGroup>
+<ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+</ItemGroup>
 </Project>

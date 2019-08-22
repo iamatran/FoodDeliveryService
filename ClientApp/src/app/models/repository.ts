@@ -103,6 +103,14 @@ export class Repository {
 					this.getAddresses();
 				});
 		}
+		//These are methods to store and get session data
+		storeSessionData(dataType: string, data: any) {
+			return this.http.post("/api/session/" + dataType, data)
+				.subscribe(response => { });
+		}
+		getSessionData(dataType: string): any {
+			return this.http.get("/api/session/" + dataType);
+		}
 	
 	
 	

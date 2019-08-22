@@ -6,7 +6,7 @@ import { CartDetailComponent } from "./store/cartDetail.component";
 const routes: Routes = [
     { path: "cart", component: CartDetailComponent },
     { path: "store", component: FoodSelectionComponent  },
-    { path: "", component: FoodSelectionComponent  }]
+    { path: "", component: FoodSelectionComponent  }
 ]
    
 export const RoutingConfig = RouterModule.forRoot(routes);

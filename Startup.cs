@@ -40,6 +40,24 @@ namespace FoodDeliveryService
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            // Added for handling sessions
+            // This will use the table, session data to store session data
+            services.AddDistributedSqlServerCache(options =>
+            {
+                options.ConnectionString =
+                    Configuration["Data:Foods:ConnectionString"];
+                options.SchemaName = "dbo";
+                options.TableName = "SessionData";
+            });
+            // This sets up the session state and configures the cookies that will expire in 48 hrs
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "FoodDeliveryService.Session";
+                options.IdleTimeout = System.TimeSpan.FromHours(48);
+                options.Cookie.HttpOnly = false;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +76,7 @@ namespace FoodDeliveryService
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
