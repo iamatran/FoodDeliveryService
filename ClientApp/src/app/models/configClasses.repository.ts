@@ -7,3 +7,7 @@ export class Filter {
 		this.related = false;
 	}
 }
+export class Pagination {
+	foodsPerPage: number = 4;
+	currentPage = 1;
+}

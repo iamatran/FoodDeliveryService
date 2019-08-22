@@ -1,7 +1,7 @@
 import { Food } from "./food.model";
 import { HttpClient } from '@angular/common/http'; 
 import { Inject, Injectable } from '@angular/core'; 
-import { Filter } from "./configClasses.repository";
+import { Filter, Pagination } from "./configClasses.repository";
 import { Address } from "./address.model";
 
 const addressesUrl = "/api/addresses";
@@ -9,13 +9,12 @@ const foodsUrl = "/api/foods";
 @Injectable()
 export class Repository {
 	private filterObject = new Filter();
+	private paginationObject = new Pagination();
 	constructor(private http: HttpClient) {
-		//this.filter.category = "drama";
         this.filter.related = true;
 		this.getFoods();
 	}
 	getFood(id: number) {
-		//console.log("Food Data Requested");
 		this.http.get(foodsUrl + "/" + id)
 				 .subscribe(response => { this.food = response });
 	}
@@ -28,12 +27,13 @@ export class Repository {
             url += "&search=" + this.filter.search;
         }
 
-		//here we're grabbing the categories for the filters
+		//here we're grabbing the categories for the filters and setting the pagination to 1
 		url += "&metadata=true";
 		this.http.get<any>(url)
 			.subscribe(response => {
                 this.foods = response.data;
-                this.categories = response.categories;
+				this.categories = response.categories;
+				this.pagination.currentPage = 1;
             });
 		}
 
@@ -113,6 +113,9 @@ export class Repository {
 
 	get filter(): Filter {
 		return this.filterObject;
+	}
+	get pagination(): Pagination {
+		return this.paginationObject;
 	}
 }
 

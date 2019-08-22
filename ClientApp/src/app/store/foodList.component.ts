@@ -7,10 +7,14 @@ import { Food } from "../models/food.model";
     templateUrl: "foodList.component.html"
 })
 
-//This displays a list of food items to the user
+//This displays a list of food items to the user using the slice method to determine which food items to display
 export class FoodListComponent {
     constructor(private repo: Repository) { }
     get foods(): Food[] {
-        return this.repo.foods;
+        if (this.repo.foods != null && this.repo.foods.length > 0) {
+            let pageIndex = (this.repo.pagination.currentPage - 1)
+                * this.repo.pagination.foodsPerPage;
+            return this.repo.foods.slice(pageIndex,
+                pageIndex + this.repo.pagination.foodsPerPage);
     }
 }
