@@ -6,10 +6,12 @@ import { AdminComponent } from "./admin.component";
 import { OverviewComponent } from "./overview.component";
 import { FoodAdminComponent } from "./foodAdmin.component";
 import { OrderAdminComponent } from "./orderAdmin.component";
+import { FoodEditorComponent } from "./foodEditor.component";
+
 
 @NgModule({
     imports: [BrowserModule, RouterModule, FormsModule],
     declarations: [AdminComponent, OverviewComponent,
-        FoodAdminComponent, OrderAdminComponent]
+        FoodAdminComponent, OrderAdminComponent, FoodEditorComponent]
 })
 export class AdminModule { }

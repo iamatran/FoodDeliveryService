@@ -1,1 +1,59 @@
-<h4 class="text-center m-2">Food Admin Coming Soon!</h4>
+<table *ngIf="tableMode; else create" class="table table-sm table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Image Url</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Address</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let m of foods">
+        <ng-template [ngIf]="food?.foodId != m.foodId" [ngIfElse]="edit">
+            <td>{{m.foodId}}</td>
+            <td>{{m.image}}</td>
+            <td>{{m.name}}</td>
+            <td>{{m.category}}</td>
+            <td>{{m.address?.name || '(None)'}}</td>
+            <td>{{m.price | currency:USD:true}}</td>
+            <td>
+                <button class="btn btn-sm btn-primary" 
+                        (click)="selectFood(m.foodId)">Edit</button>
+                <button class="btn btn-sm btn-danger" 
+                        (click)="deleteFood(m.foodId)">Delete</button>
+            </td>
+        </ng-template>
+    </tr>
+    <tfoot>
+        <tr>
+            <td colspan="6" class="text-center">
+                <button class="btn btn-primary" 
+                        (click)="clearFood(); tableMode = false">Create</button>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<ng-template #edit>
+    <td colspan="6">
+        <admin-food-editor></admin-food-editor>
+        <div class="text-center">
+            <button class="btn btn-sm btn-primary" (click)="saveFood()">
+                Save
+            </button>
+            <button class="btn btn-sm btn-info" (click)="clearFood()">
+                Cancel
+            </button>
+        </div>
+    </td>
+</ng-template>
+<ng-template #create>
+    <admin-food-editor></admin-food-editor>
+    <button class="btn btn-primary" (click)="saveFood()">
+        Save
+    </button>
+    <button class="btn btn-info" (click)="clearFood()">
+        Cancel
+    </button>
+</ng-template>
