@@ -7,6 +7,8 @@ public DataContext(DbContextOptions<DataContext> opts)
     public DbSet<Food> Foods {get; set;}
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Rating> Ratings { get; set; }
+    public DbSet<Order> Orders { get; set; }
+
     //This is our delete method using modelbuilder. When we delete, we also deleted related info
     protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

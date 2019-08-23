@@ -36,6 +36,25 @@ namespace FoodDeliveryService.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("FoodDeliveryService.Models.CartLine", b =>
+                {
+                    b.Property<long>("CartLineId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("FoodId");
+
+                    b.Property<long?>("OrderId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("CartLineId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("CartLine");
+                });
+
             modelBuilder.Entity("FoodDeliveryService.Models.Food", b =>
                 {
                     b.Property<long>("FoodId")
@@ -61,6 +80,52 @@ namespace FoodDeliveryService.Migrations
                     b.ToTable("Foods");
                 });
 
+            modelBuilder.Entity("FoodDeliveryService.Models.Order", b =>
+                {
+                    b.Property<long>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<long>("PaymentId");
+
+                    b.Property<bool>("Shipped");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("PaymentId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("FoodDeliveryService.Models.Payment", b =>
+                {
+                    b.Property<long>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuthCode");
+
+                    b.Property<string>("CardExpiry")
+                        .IsRequired();
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired();
+
+                    b.Property<int>("CardSecurityCode");
+
+                    b.Property<decimal>("Total");
+
+                    b.HasKey("PaymentId");
+
+                    b.ToTable("Payment");
+                });
+
             modelBuilder.Entity("FoodDeliveryService.Models.Rating", b =>
                 {
                     b.Property<long>("RatingId")
@@ -78,12 +143,27 @@ namespace FoodDeliveryService.Migrations
                     b.ToTable("Ratings");
                 });
 
+            modelBuilder.Entity("FoodDeliveryService.Models.CartLine", b =>
+                {
+                    b.HasOne("FoodDeliveryService.Models.Order")
+                        .WithMany("Foods")
+                        .HasForeignKey("OrderId");
+                });
+
             modelBuilder.Entity("FoodDeliveryService.Models.Food", b =>
                 {
                     b.HasOne("FoodDeliveryService.Models.Address", "Address")
                         .WithMany("Foods")
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("FoodDeliveryService.Models.Order", b =>
+                {
+                    b.HasOne("FoodDeliveryService.Models.Payment", "Payment")
+                        .WithMany()
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FoodDeliveryService.Models.Rating", b =>

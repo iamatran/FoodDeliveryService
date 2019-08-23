@@ -3,13 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core'; 
 import { Filter, Pagination } from "./configClasses.repository";
 import { Address } from "./address.model";
+import { Order } from "./order.model";
 
 const addressesUrl = "/api/addresses";
 const foodsUrl = "/api/foods";
+const ordersUrl = "/api/orders";
+
 @Injectable()
 export class Repository {
 	private filterObject = new Filter();
 	private paginationObject = new Pagination();
+	
 	constructor(private http: HttpClient) {
         this.filter.related = true;
 		this.getFoods();
@@ -111,13 +115,34 @@ export class Repository {
 		getSessionData(dataType: string): any {
 			return this.http.get("/api/session/" + dataType);
 		}
-	
-	
+		//Methods related to getting and creating orders and a way to clear the order
+		getOrders() {
+			this.http.get<Order[]>(ordersUrl)
+				.subscribe(data => this.orders = data);
+		}
+		createOrder(order: Order) {
+			this.http.post<any>(ordersUrl, {
+				name: order.name,
+				address: order.address,
+				payment: order.payment,
+				foods: order.foods
+			}).subscribe(data => {
+				order.orderConfirmation = data
+				order.cart.clear();
+				order.clear();
+			});
+		}
+		shipOrder(order: Order) {
+			this.http.post(ordersUrl + "/" + order.orderId,null)
+				.subscribe(r => this.getOrders())
+		}
 	
 	food: Food;
 	foods: Food[];
 	addresses: Address[] = [];
 	categories: string[] = [];
+	orders: Order[] = [];
+
 
 	get filter(): Filter {
 		return this.filterObject;
