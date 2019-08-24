@@ -38,7 +38,7 @@ export class AppComponent {
     m.category = "Modified Category";
     this.repo.replaceFood(m);
   }
-  replaceStudio() {
+  replaceAddress() {
     let s = new Address(3, "Modified Address", "New York", "NY");
     this.repo.replaceAddress(s);
   }
@@ -51,7 +51,7 @@ export class AppComponent {
   deleteFood() {
     this.repo.deleteFood(1);
   }
-  deleteStudio() {
+  deleteAddress() {
     this.repo.deleteAddress(2);
   }
 
