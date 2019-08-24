@@ -1,3 +1,4 @@
+//Responsible for creating filter objects
 export class Filter {
 	category?: string;
 	search?: string;

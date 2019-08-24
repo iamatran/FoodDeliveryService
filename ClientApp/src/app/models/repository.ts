@@ -5,7 +5,7 @@ import { Filter, Pagination } from "./configClasses.repository";
 import { Address } from "./address.model";
 import { Order } from "./order.model";
 
-//We are creating the base api address variables that will be transformed by our methods
+//We are creating the base api address variables that will be constructed by our methods
 const addressesUrl = "/api/addresses";
 const foodsUrl = "/api/foods";
 const ordersUrl = "/api/orders";
@@ -15,6 +15,7 @@ export class Repository {
 	private filterObject = new Filter();
 	private paginationObject = new Pagination();
 	
+	//Methods for filtering
 	constructor(private http: HttpClient) {
         this.filter.related = true;
 		this.getFoods();
@@ -42,7 +43,7 @@ export class Repository {
 				this.pagination.currentPage = 1;
             });
 		}
-
+		//gives us a collection of studios
 		getAddresses() {
 			this.http.get<Address[]>(addressesUrl)
 				.subscribe(response => this.addresses = response);

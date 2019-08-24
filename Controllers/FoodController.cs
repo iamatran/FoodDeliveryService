@@ -34,8 +34,7 @@ namespace FoodDeliveryService.Controllers
             {
                 if (result.Address != null)
                 {
-                    result.Address.Foods = result.Address.Foods.Select(s =>
-                    new Food
+                    result.Address.Foods = result.Address.Foods.Select(s => new Food
                     {
                         FoodId = s.FoodId,
                         Name = s.Name,
@@ -53,26 +52,27 @@ namespace FoodDeliveryService.Controllers
                 }
             }
             return result;
-
         }
 
+        //Has methods for ctegories, searching, related items, and a way to handle metadata
         [HttpGet]
-        public IActionResult GetFoods(string category, string search,
-                                            bool related = false, bool metadata = false)
+        public IActionResult GetFoods(string category, string search, bool related = false, bool metadata = false)
         {
             IQueryable<Food> query = context.Foods;
             if (!string.IsNullOrWhiteSpace(category))
             {
+                //This takes in category, converts to lowercase ad does a query based on category in our collection
                 string catLower = category.ToLower();
                 query = query.Where(m => m.Category.ToLower().Contains(catLower));
             }
             if (!string.IsNullOrWhiteSpace(search))
             {
+                //Query based on search
                 string searchLower = search.ToLower();
                 query = query.Where(m => m.Name.ToLower().Contains(searchLower)
                 || m.Description.ToLower().Contains(searchLower));
             }
-
+            //Checks if related condition is true and it will iterate through the list and nullify food within addresses and food within the ratings object
             if (related)
             {
                 query = query.Include(m => m.Address).Include(m => m.Ratings);
@@ -105,7 +105,8 @@ namespace FoodDeliveryService.Controllers
             .Distinct().OrderBy(m => m)
             });
         }
-
+        //This has a food data paremeter decorated with a body attribute to tell the model binder to get data values from the request
+        //We check if valid, then assign the movie object to m, and assign it to our context and save
         [HttpPost]
         public IActionResult CreateFood([FromBody] FoodData mdata)
         {
@@ -125,7 +126,7 @@ namespace FoodDeliveryService.Controllers
                 return BadRequest(ModelState);
             }
         }
-
+        //This put method will replace and update a food item
         [HttpPut("{id}")]
         public IActionResult ReplaceFood(long id, [FromBody] FoodData mData)
         {
@@ -149,8 +150,7 @@ namespace FoodDeliveryService.Controllers
 
         //this patch attribute defines a long paremeter that identifies the food that is being modified and the adjacent patch document parameter that represents the Json patch document. We retreive a food object use the patch method yo update and create an updated food object that we also check if the object is valid
         [HttpPatch("{id}")]
-        public IActionResult UpdateFood(long id,
-            [FromBody]JsonPatchDocument<FoodData> patch)
+        public IActionResult UpdateFood(long id, [FromBody]JsonPatchDocument<FoodData> patch)
         {
             Food food = context.Foods
             .Include(m => m.Address)

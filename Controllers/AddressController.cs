@@ -13,11 +13,13 @@ namespace FoodDeliveryService.Controllers
         {
             context = ctx;
         }
+        //To get some addresses of restaurants
         [HttpGet]
         public IEnumerable<Address> GetAddresses()
         {
             return context.Addresses;
         }
+        //To create an addresses of restaurants
         [HttpPost]
         public IActionResult CreateAddress([FromBody]AddressData sdata)
         {
@@ -33,6 +35,7 @@ namespace FoodDeliveryService.Controllers
                 return BadRequest(ModelState);
             }
         }
+        //Put method to replace the address of a restaurant
         [HttpPut("{id}")]
         public IActionResult ReplaceAddress(long id,
                [FromBody] AddressData sdata)

@@ -16,7 +16,7 @@ namespace FoodDeliveryService.Models.BindingTargets
         [Range(1, int.MaxValue, ErrorMessage = "Price must be at least 1")]
         public decimal Price { get => Food.Price; set => Food.Price = value; }
         
-        //This get is grabs the id, the ?? checks for null values
+        //This get is grabs the id, and checks for null values
         //The set checks if it has a value, if not it will assign the address as null, or it will create a new instance of address
         public long? Address
         {
