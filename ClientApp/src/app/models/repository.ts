@@ -5,6 +5,7 @@ import { Filter, Pagination } from "./configClasses.repository";
 import { Address } from "./address.model";
 import { Order } from "./order.model";
 
+//We are creating the base api address variables that will be transformed by our methods
 const addressesUrl = "/api/addresses";
 const foodsUrl = "/api/foods";
 const ordersUrl = "/api/orders";
@@ -22,6 +23,7 @@ export class Repository {
 		this.http.get(foodsUrl + "/" + id)
 				 .subscribe(response => { this.food = response });
 	}
+	//Our method to get related data
 	getFoods(related = false) {
 		let url = foodsUrl + "?related=" + this.filter.related;
         if (this.filter.category) {

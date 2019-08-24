@@ -29,6 +29,7 @@ namespace FoodDeliveryService.Controllers
                     .Include(m => m.Address).ThenInclude(s => s.Foods)
                     .Include(m => m.Ratings)
                     .FirstOrDefault(m => m.FoodId == id);
+            //To avoid circular references, were going to check in order for null values and assign nulls accordingly
             if (result != null)
             {
                 if (result.Address != null)
