@@ -9,6 +9,7 @@ import { StoreModule } from "./store/store.module";
 import { FoodSelectionComponent } from "./store/foodSelection.component";
 import { AdminModule } from "./admin/admin.module";
 
+//This file configures the angular app and imports all of our modules
 
 @NgModule({
   declarations: [

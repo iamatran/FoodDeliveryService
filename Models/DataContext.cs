@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 
+
+//This is the database context class to register the CRUD operations during app startup
+
 namespace FoodDeliveryService.Models {
     public class DataContext : DbContext{
 public DataContext(DbContextOptions<DataContext> opts)

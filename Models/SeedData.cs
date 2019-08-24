@@ -3,6 +3,8 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using FoodDeliveryService.Models;
 
+//This seed data class will use entity frameworks migration feature to seed the database with these starter items
+
 namespace FoodDeliveryService {
 
     public class SeedData {

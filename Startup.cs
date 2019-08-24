@@ -23,14 +23,10 @@ namespace FoodDeliveryService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(Configuration
-                    ["Data:Foods:ConnectionString"]));
-            services.AddMvc().AddJsonOptions(opts => {
-                		opts.SerializerSettings.ReferenceLoopHandling
-                   		 	= ReferenceLoopHandling.Serialize;
-                        opts.SerializerSettings.NullValueHandling
-                            = NullValueHandling.Ignore;
+            //This will register the datacontext that will seed the data at startup
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["Data:Foods:ConnectionString"]));
+            services.AddMvc().AddJsonOptions(opts => {opts.SerializerSettings.ReferenceLoopHandling	= ReferenceLoopHandling.Serialize;
+                        opts.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             });
                                 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -98,6 +94,7 @@ namespace FoodDeliveryService
                 }
             });
 
+            // Here we will seed the database with our data context
             SeedData.SeedDatabase(context);
         }
     }

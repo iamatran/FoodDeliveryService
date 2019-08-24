@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using FoodDeliveryService.Models.BindingTargets;
 using Microsoft.AspNetCore.JsonPatch;
 
+//This is the controller for our foods with some HTTP methods setup for our API
+
 namespace FoodDeliveryService.Controllers
 {
     [Route("api/foods")]
@@ -19,19 +21,19 @@ namespace FoodDeliveryService.Controllers
             context = ctx;
         }
 
-        [HttpGet("{id}")]                   	
-    	public Food GetFood(long id)
-    	{
+        [HttpGet("{id}")]
+        public Food GetFood(long id)
+        {
 
             Food result = context.Foods
-                    .Include(m => m.Address).ThenInclude(s=>s.Foods)
+                    .Include(m => m.Address).ThenInclude(s => s.Foods)
                     .Include(m => m.Ratings)
                     .FirstOrDefault(m => m.FoodId == id);
             if (result != null)
             {
                 if (result.Address != null)
                 {
-                    result.Address.Foods = result.Address.Foods.Select(s=>
+                    result.Address.Foods = result.Address.Foods.Select(s =>
                     new Food
                     {
                         FoodId = s.FoodId,
@@ -50,8 +52,8 @@ namespace FoodDeliveryService.Controllers
                 }
             }
             return result;
-            
-    	}
+
+        }
 
         [HttpGet]
         public IActionResult GetFoods(string category, string search,
@@ -94,16 +96,16 @@ namespace FoodDeliveryService.Controllers
         }
         //This method will create metadata set to the sequence of food objects and the categories property is set using a query to grab the list of categories of restaurants
         private IActionResult CreateMetadata(IEnumerable<Food> foods)
-    {
-        return Ok(new
         {
-            data = foods,
-            categories = context.Foods.Select(m => m.Category)
-        .Distinct().OrderBy(m => m)
-        });
-    }
+            return Ok(new
+            {
+                data = foods,
+                categories = context.Foods.Select(m => m.Category)
+            .Distinct().OrderBy(m => m)
+            });
+        }
 
-    [HttpPost]
+        [HttpPost]
         public IActionResult CreateFood([FromBody] FoodData mdata)
         {
             if (ModelState.IsValid)
@@ -170,7 +172,7 @@ namespace FoodDeliveryService.Controllers
         }
         //our delete method, pasing in id
         [HttpDelete("{id}")]
-        public IActionResult  DeleteFood(long id)
+        public IActionResult DeleteFood(long id)
         {
             context.Foods.Remove(new Food { FoodId = id });
             context.SaveChanges();
