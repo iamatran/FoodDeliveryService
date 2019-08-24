@@ -30,32 +30,33 @@ $ npm install --global @angular/cli@7
 
 ### Run program in Visual Studio Code with the built-in Powershell terminal
 
-    #### Setup Database Migration with Entity Frame Core 
+### Setup Database Migration with Entity Frame Core 
     ```
     $ dotnet ef migrations add InitialCreate
     ```
 
-    #### Update Database Schema
+#### Update Database Schema
     ```
     $ dotnet ef database update
     ```
-    #### Install .NET dependencies
+#### Install .NET dependencies
     ```
     $ dotnet restore
     ```
-    #### Create sql-cache for session data
+#### Create sql-cache for session data
     ```
     $ dotnet sql-cache create "Server=(localdb)\MSSQLLocalDB;Database=FoodDeliveryService;Trusted_Connection=True;MultipleActiveResultSets=true"  "dbo"  "SessionData"
     ```
-    #### Update Database Migration
+
+#### Update Database Migration
     ```
     $ dotnet ef migrations add Orders
     ```
-    #### Update Database Schema
+#### Update Database Schema
     ```
     $ dotnet ef database update
     ```
-    #### Start the application
+#### Start the application
     ```
     $ dotnet run
     ```
