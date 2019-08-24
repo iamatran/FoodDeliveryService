@@ -30,7 +30,7 @@ $ npm install --global @angular/cli@7
 
 ### Run program in Visual Studio Code with the built-in Powershell terminal
 
-### * Setup Database Migration with Entity Frame Core 
+* Setup Database Migration with Entity Frame Core 
     ```
     $ dotnet ef migrations add InitialCreate
     ```
