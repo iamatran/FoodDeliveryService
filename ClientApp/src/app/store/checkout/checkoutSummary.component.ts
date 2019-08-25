@@ -5,6 +5,8 @@ import { Order } from "../../models/order.model";
 @Component({
     templateUrl: "checkoutSummary.component.html"
 })
+
+// routes url to next place when order is submitted
 export class CheckoutSummaryComponent {
     constructor(private router: Router,
         public order: Order) {

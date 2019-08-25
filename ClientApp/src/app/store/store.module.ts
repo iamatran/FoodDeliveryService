@@ -14,6 +14,8 @@ import { CheckoutPaymentComponent } from "./checkout/checkoutPayment.component";
 import { CheckoutSummaryComponent } from "./checkout/checkoutSummary.component";
 import { OrderConfirmationComponent } from "./checkout/orderConfirmation.component";
 
+//This file configures the angular app and imports all of our modules
+
 @NgModule({
     declarations: [CartSummaryComponent, CategoryFilterComponent,
         PaginationComponent, FoodListComponent, RatingsComponent,

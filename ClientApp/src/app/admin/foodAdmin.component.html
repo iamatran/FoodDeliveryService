@@ -1,3 +1,5 @@
+<!-- web form to create a new food item -->
+
 <table *ngIf="tableMode; else create" class="table table-sm table-striped">
     <tr>
         <th>ID</th>
@@ -17,18 +19,15 @@
             <td>{{m.address?.name || '(None)'}}</td>
             <td>{{m.price | currency:USD:true}}</td>
             <td>
-                <button class="btn btn-sm btn-primary" 
-                        (click)="selectFood(m.foodId)">Edit</button>
-                <button class="btn btn-sm btn-danger" 
-                        (click)="deleteFood(m.foodId)">Delete</button>
+                <button class="btn btn-sm btn-primary" (click)="selectFood(m.foodId)">Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteFood(m.foodId)">Delete</button>
             </td>
         </ng-template>
     </tr>
     <tfoot>
         <tr>
             <td colspan="6" class="text-center">
-                <button class="btn btn-primary" 
-                        (click)="clearFood(); tableMode = false">Create</button>
+                <button class="btn btn-primary" (click)="clearFood(); tableMode = false">Create</button>
             </td>
         </tr>
     </tfoot>

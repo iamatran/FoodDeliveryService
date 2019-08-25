@@ -8,7 +8,7 @@ import { FoodAdminComponent } from "./foodAdmin.component";
 import { OrderAdminComponent } from "./orderAdmin.component";
 import { FoodEditorComponent } from "./foodEditor.component";
 
-
+//This is here to register classes in the decorator for dependency injection
 @NgModule({
     imports: [BrowserModule, RouterModule, FormsModule],
     declarations: [AdminComponent, OverviewComponent,

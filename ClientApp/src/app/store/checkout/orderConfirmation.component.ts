@@ -5,6 +5,8 @@ import { Order } from "../../models/order.model";
 @Component({
     templateUrl: "orderConfirmation.component.html"
 })
+
+//If we submit the order, navigate to next url
 export class OrderConfirmationComponent {
     constructor(private router: Router,
         public order: Order) {

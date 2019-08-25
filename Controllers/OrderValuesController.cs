@@ -68,7 +68,7 @@ namespace FoodDeliveryService.Controllers
         }
         private void ProcessPayment(Payment payment)
         {
-            // integrate your payment system here
+            // integrate payment system here
             payment.AuthCode = "12345";
         }
     }
