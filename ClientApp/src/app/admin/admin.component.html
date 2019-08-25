@@ -1,17 +1,30 @@
 <!-- Buttons to select which admin feature -->
-<div class="navbar bg-info mb-1">
-    <a class="navbar-brand text-white">Food Delivery Service Administration</a>
+
+<div class="row bg-info">
+    <div class="col">
+        <div class="navbar navbar-dark bg-info mb-1">
+            <a class="navbar-brand text-white">
+                <i class="fa fa-map-marker"></i>
+                <i class="fa fa-cutlery"></i>
+                &nbsp;
+                Food Delivery Service for Professionals
+            </a>
+        </div>
+    </div>
 </div>
+
+<br>
 <div class="row no-gutters">
     <div class="col-3">
-        <button class="btn btn-block btn-outline-info" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <button class="btn btn-block btn-outline-info" routerLink="/admin" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
             Overview
         </button>
         <button class="btn btn-block btn-outline-info" routerLink="/admin/foods" routerLinkActive="active">
-            Foods
+            Manage Food Items
         </button>
         <button class="btn btn-block btn-outline-info" routerLink="/admin/orders" routerLinkActive="active">
-            Orders
+            Manage Orders
         </button>
     </div>
     <div class="col p-2">

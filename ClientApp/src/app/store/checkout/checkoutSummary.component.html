@@ -1,6 +1,21 @@
 <!-- This is the order summary -->
-<h2 class="text-center">Order Summary</h2>
+<div class="row bg-dark">
+    <div class="col">
+        <div class="navbar navbar-dark">
+            <a class="navbar-brand text-white">
+                <i class="fa fa-map-marker"></i>
+                <i class="fa fa-cutlery"></i>
+                &nbsp;
+                Food Delivery Service for Professionals
+            </a>
+        </div>
+    </div>
+</div>
+
+
 <div class="container">
+    <h2 class="text-center">Step 3: Review Order</h2>
+
     <table class="table m-2">
         <tr>
             <th>Name on Order</th>
@@ -20,10 +35,10 @@
         </tr>
     </table>
     <div class="text-center pt-2">
-        <button class="btn btn-outline-primary" routerLink="/checkout/step2">
+        <button class="btn btn-dark" routerLink="/checkout/step2">
             Back
         </button>
-        <button class="btn btn-danger" (click)="submitOrder()">
+        <button class="btn btn-primary" (click)="submitOrder()">
             Place Order
         </button>
     </div>

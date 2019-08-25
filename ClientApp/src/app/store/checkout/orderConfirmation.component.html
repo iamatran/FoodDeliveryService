@@ -1,6 +1,20 @@
 <!-- Shows Order confirmation screen -->
-<h2 class="text-center">Order Confirmation</h2>
+
+<div class="row bg-dark">
+    <div class="col">
+        <div class="navbar navbar-dark">
+            <a class="navbar-brand text-white">
+                <i class="fa fa-map-marker"></i>
+                <i class="fa fa-cutlery"></i>
+                &nbsp;
+                Food Delivery Service for Professionals
+            </a>
+        </div>
+    </div>
+</div>
+
 <div class="container">
+    <h2 class="text-center">Order Confirmation</h2>
     <table *ngIf="order.orderConfirmation; else nodata" class="table m-2">
         <tr>
             <th>Order Number</th>
@@ -16,7 +30,7 @@
         </tr>
     </table>
     <div class="text-center">
-        <p>Thank you for ordering with us!</p>
+        <p><b>Thank you for ordering with us!</b></p>
         <button class="btn btn-primary" routerLink="/">Return to Order Page</button>
     </div>
     <ng-template #nodata>

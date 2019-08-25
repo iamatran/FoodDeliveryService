@@ -2,7 +2,7 @@
 
 <table *ngIf="tableMode; else create" class="table table-sm table-striped">
     <tr>
-        <th>ID</th>
+        <th>Id</th>
         <th>Image Url</th>
         <th>Name</th>
         <th>Category</th>
@@ -19,7 +19,7 @@
             <td>{{m.address?.name || '(None)'}}</td>
             <td>{{m.price | currency:USD:true}}</td>
             <td>
-                <button class="btn btn-sm btn-primary" (click)="selectFood(m.foodId)">Edit</button>
+                <button class="btn btn-sm btn-info" (click)="selectFood(m.foodId)">Edit</button>
                 <button class="btn btn-sm btn-danger" (click)="deleteFood(m.foodId)">Delete</button>
             </td>
         </ng-template>
@@ -27,7 +27,7 @@
     <tfoot>
         <tr>
             <td colspan="6" class="text-center">
-                <button class="btn btn-primary" (click)="clearFood(); tableMode = false">Create</button>
+                <button class="btn btn-info" (click)="clearFood(); tableMode = false">Create Food Item</button>
             </td>
         </tr>
     </tfoot>
@@ -38,10 +38,10 @@
     <td colspan="6">
         <admin-food-editor></admin-food-editor>
         <div class="text-center">
-            <button class="btn btn-sm btn-primary" (click)="saveFood()">
+            <button class="btn btn-sm btn-info" (click)="saveFood()">
                 Save
             </button>
-            <button class="btn btn-sm btn-info" (click)="clearFood()">
+            <button class="btn btn-sm btn-dark" (click)="clearFood()">
                 Cancel
             </button>
         </div>
@@ -49,10 +49,10 @@
 </ng-template>
 <ng-template #create>
     <admin-food-editor></admin-food-editor>
-    <button class="btn btn-primary" (click)="saveFood()">
+    <button class="btn btn-info" (click)="saveFood()">
         Save
     </button>
-    <button class="btn btn-info" (click)="clearFood()">
+    <button class="btn btn-dark" (click)="clearFood()">
         Cancel
     </button>
 </ng-template>

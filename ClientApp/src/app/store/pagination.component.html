@@ -1,6 +1,9 @@
 <!-- This will check if empty and loop through the array of page numbers and showing active button if it's selected or not -->
-<div *ngIf="pages.length > 1" class="text-right my-2">
-    <button *ngFor="let page of pages" class="btn btn-outline-primary mx-1" [class.active]="current == page" (click)="changePage(page)">
-        {{page}}
-    </button>
+<div class="container">
+    <div *ngIf="pages.length > 1" class="text-right my-2">
+        <button *ngFor="let page of pages" class="btn btn-outline-dark mx-1" [class.active]="current == page"
+            (click)="changePage(page)">
+            {{page}}
+        </button>
+    </div>
 </div>

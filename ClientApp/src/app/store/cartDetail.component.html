@@ -1,12 +1,16 @@
-<div class="navbar bg-dark">
-    <a class="navbar-brand text-white">
-        <i class="fa fa-map-marker"></i>
-        <i class="fa fa-cutlery"></i>
-        &nbsp;
-        Food Delivery Service for Professionals
-    </a>
+<div class="row bg-dark">
+    <div class="col">
+        <div class="navbar navbar-dark">
+            <a class="navbar-brand text-white">
+                <i class="fa fa-map-marker"></i>
+                <i class="fa fa-cutlery"></i>
+                &nbsp;
+                Food Delivery Service for Professionals
+            </a>
+        </div>
+    </div>
 </div>
-<div class="m-1">
+<div class="m-1 container">
     <h2 class="text-center">Your Cart</h2>
     <table class="table table-bordered table-striped p-1">
         <thead>
@@ -55,8 +59,8 @@
     </table>
 </div>
 <div class="text-center">
-    <button class="btn btn-primary" routerLink="/store">Continue Shopping</button>
-    <button class="btn btn-secondary" routerLink="/checkout" [disabled]="cart.selections.length == 0">
+    <button class="btn btn-dark" routerLink="/store">Continue Shopping</button>
+    <button class="btn btn-primary" routerLink="/checkout" [disabled]="cart.selections.length == 0">
         Checkout
     </button>
 </div>

@@ -14,7 +14,7 @@
         <td>{{o.foods.length}}</td>
         <td>{{o.payment.total | currency:'USD'}}</td>
         <td *ngIf="!o.shipped; else shipped">
-            <button class="btn btn-sm btn-primary" (click)="markShipped(o)">
+            <button class="btn btn-sm btn-info" (click)="markShipped(o)">
                 Mark Ready for Delivery
             </button>
         </td>
